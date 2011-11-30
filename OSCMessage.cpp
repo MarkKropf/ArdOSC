@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include "OSCcommon/OSCcommon.h"
+#include "OSCCommon/OSCcommon.h"
 #include "OSCCommon/OSCMessage.h"
 
 

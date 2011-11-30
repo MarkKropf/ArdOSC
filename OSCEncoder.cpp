@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "OSCcommon/OSCcommon.h"
+#include "OSCCommon/OSCcommon.h"
 #include "OSCCommon/OSCEncoder.h"
 #include "OSCCommon/OSCArg.h"
 
