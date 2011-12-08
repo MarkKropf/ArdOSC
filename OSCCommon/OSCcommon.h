@@ -33,7 +33,7 @@ extern "C" {
 
 //======== user define ==============
 
-//#define _USE_FLOAT_
+#define _USE_FLOAT_
 
 //#define _USE_STRING_
 
