@@ -24,7 +24,7 @@ extern "C" {
 //#define kMaxAugument	16
 //#define kMaxRecieveData	100
 //#define kMaxOSCAdrCharactor	255
-#define kMaxAugument 4
+#define kMaxArgument 4
 #define kMaxRecieveData	100
 #define kMaxOSCAdrCharactor	255
 

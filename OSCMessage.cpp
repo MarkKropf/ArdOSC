@@ -2,7 +2,7 @@
  
  ArdOSC 2.1 - OSC Library for Arduino.
  
- -------- Lisence -----------------------------------------------------------
+ -------- License -----------------------------------------------------------
  
  ArdOSC
  
@@ -175,7 +175,7 @@ int16_t OSCMessage::setArgData(char _type , void *_value , uint8_t _byte,bool _e
 
 int16_t OSCMessage::addArgInt32(int32_t _value){
     
-    if( _argsNum > kMaxAugument ) return -1;
+    if( _argsNum > kMaxArgument ) return -1;
     
     uint8_t tmpValue[4];
     uint8_t *data = (uint8_t*)&_value;
@@ -205,7 +205,7 @@ int32_t OSCMessage::getArgInt32(int16_t _index){
 
 int16_t OSCMessage::addArgFloat(float _value){
     
-    if( _argsNum > kMaxAugument ) return -1;
+    if( _argsNum > kMaxArgument ) return -1;
     
     uint8_t tmpValue[4];
     uint8_t *data = (uint8_t*)&_value;
@@ -235,7 +235,7 @@ float OSCMessage::getArgFloat(int16_t _index){
 #ifdef _USE_STRING_
 int16_t OSCMessage::addArgString(const char* _value){
     
-    if (_argsNum > kMaxAugument ) return -1;
+    if (_argsNum > kMaxArgument ) return -1;
     
     setArgData( kTagString , (void*)_value , strlen(_value) , true );
         

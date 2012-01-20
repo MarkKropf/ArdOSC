@@ -28,7 +28,7 @@ private:
 	uint8_t _rcvData[kMaxRecieveData];
 	
 
-    OSCDecoder::OSCDecoder _decoder;
+    OSCDecoder _decoder;
     Pattern::Pattern _adrMatch;
 	
    

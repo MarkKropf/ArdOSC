@@ -55,7 +55,7 @@ private:
 	
 	uint16_t	_argsNum;
 
-    OSCArg *    _args[kMaxAugument];
+    OSCArg *    _args[kMaxArgument];
 
  
     uint16_t getMessageSize(void);
