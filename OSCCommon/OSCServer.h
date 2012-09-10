@@ -46,6 +46,7 @@ public:
 	
 	
     int16_t aviableCheck(void);
+	int16_t processRawData(uint8_t *buffer);
 
 
     //_adr osc address string pointer - "/ard/aaa"

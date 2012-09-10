@@ -80,6 +80,16 @@ int16_t OSCServer::aviableCheck(void){
 	return 1;
 }
 
+//Added by michu@neophob.com - process messages direct
+int16_t OSCServer::processRawData(uint8_t *buffer){
+    OSCMessage rcvMes;
+
+    if( _decoder.decode( &rcvMes, buffer ) < 0 ) return -1;
+
+    _adrMatch.paternComp(&rcvMes);
+
+    return 1;
+}
 
 
 void OSCServer::rcvFlush(void){
