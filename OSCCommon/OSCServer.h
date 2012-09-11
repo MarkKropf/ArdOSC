@@ -29,7 +29,7 @@ private:
 	
 
     OSCDecoder _decoder;
-    Pattern::Pattern _adrMatch;
+    Pattern _adrMatch;
 	
    
 	void rcvFlush(void);
