@@ -46,8 +46,12 @@ public:
 	OSCClient(void);
 	~OSCClient(void);
     
+	//encode and send
+	int16_t send(OSCMessage *_message);
 
-	int16_t send( OSCMessage *_message);
+	//transform the message into binary packetdata
+//	int16_t preparePacketData(OSCMessage *_message, uint8_t *packetData);
+//	int16_t sendPacketData(OSCMessage *_message, uint8_t *packetData);
     
 			
 };
