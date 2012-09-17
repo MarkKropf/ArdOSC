@@ -24,10 +24,12 @@ http://www.arduino.cc/en/Main/ArduinoBoardEthernet
 Installation
 ArdOSC folder into ..
 
-Mac
+**Mac**
+
 ~/Documents/Arduino/libraries/
 
-Win
+**Win**
+
 MyDocuments\Arduino\libraries\
 
 http://www.arduino.cc/en/Hacking/Libraries
@@ -36,11 +38,11 @@ http://www.arduino.cc/en/Hacking/Libraries
 #Release History
 ArdOSC 2.1  - OSC Library for Arduino.
  
-* This library works with arduino v1.0.1
-* 2011/09/19 version 2.1 added callback function
-*                        added osc message argument function
-* 2010/02/01 version 2.0 changed Project OSCClass -> ArdOSC
-* 2009/03/22 version 1.0.1 add errror process。change Doc.
-* 2009/03/21 version 1.0.0
+    This library works with arduino v1.0.1
+    2011/09/19 version 2.1 added callback function
+                           added osc message argument function
+    2010/02/01 version 2.0 changed Project OSCClass -> ArdOSC
+    2009/03/22 version 1.0.1 add errror process。change Doc.
+    2009/03/21 version 1.0.0
  
  
