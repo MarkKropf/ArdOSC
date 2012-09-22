@@ -111,12 +111,12 @@ int16_t OSCClient::send(OSCMessage *_message){
     return result;*/
 }
 
-
+//use static allocated packetDataBuffer
 int16_t OSCClient::preparePacketData(OSCMessage *_message, uint8_t *packetData) {
-    packetData = (uint8_t*) calloc(_message->getMessageSize(), 1);
-    if (packetData == NULL) {
-        return -2;
-    }
+//    *packetData = (uint8_t*) calloc(_message->getMessageSize(), 1);
+//    if (packetData == NULL) {
+//        return -2;
+//    }
     if (encoder.encode(_message , packetData ) < 0 ) {        
         return -1;
     }
@@ -131,7 +131,7 @@ int16_t OSCClient::sendPacketData(OSCMessage *_message, uint8_t *packetData) {
 
     if (sockOpen()<0) return -1; //socket open check
 
-    result = sendto( _sock , packetData , _message->getMessageSize() , _message->getIpAddress(), _message->getPortNumber() );
+    result = sendto(_sock , packetData , _message->getMessageSize() , _message->getIpAddress(), _message->getPortNumber() );
  
     sockClose();
     
