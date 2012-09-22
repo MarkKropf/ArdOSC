@@ -111,7 +111,7 @@ int16_t OSCClient::send(OSCMessage *_message){
     return result;*/
 }
 
-/*
+
 int16_t OSCClient::preparePacketData(OSCMessage *_message, uint8_t *packetData) {
     packetData = (uint8_t*) calloc(_message->getMessageSize(), 1);
     if (packetData == NULL) {
@@ -136,7 +136,7 @@ int16_t OSCClient::sendPacketData(OSCMessage *_message, uint8_t *packetData) {
     sockClose();
     
     return result;
-}*/
+}
 
 
 void OSCClient::flushSendData(void){
