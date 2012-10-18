@@ -12,6 +12,7 @@
  
  */				   
 
+#include <Arduino.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
@@ -60,7 +61,14 @@ void OSCMessage::flush(void){
         tmp = _args[i];
         delete tmp;
     }
-    
+	char *tmp1;
+	    
+	for (uint8_t i = 0; i < _addrArgsNum; i++){
+		tmp1 = _addrArgs[i];
+		delete tmp1;
+	}
+        
+	_addrArgsNum = 0;
 	_argsNum = 0;
 	_argsAlignmentSize = 0;	
 	_port = 0;
@@ -125,6 +133,49 @@ char   *OSCMessage::getOSCAddress(void){
     return _oscAddress; 
 }
 
+int16_t OSCMessage::getAddressArgsNum(void){
+	return _addrArgsNum;
+}
+
+void OSCMessage::parseAddressArgs(char *_pattern){
+	_addrArgsNum=0;
+	String _pat = String(_pattern);
+	String _addr = String(_oscAddress);
+	int16_t _startIndex = _pat.indexOf('^')-1;
+	int16_t _index = _addr.indexOf('/', _startIndex);	
+
+	int16_t _nextIndex; 
+	String _partial;
+	while (_index != -1){		
+		_addrArgsNum++;
+ 
+		_nextIndex = _addr.indexOf('/', _index+1);
+		if (_nextIndex == -1){
+			_partial = _addr.substring(_index+1);
+		}
+		else {
+			_partial = _addr.substring(_index+1, _nextIndex);
+		}
+    
+		_addrArgs[_addrArgsNum-1] = (char*)calloc(1,_partial.length()+1);
+		_partial.toCharArray(_addrArgs[_addrArgsNum-1], _partial.length()+1);
+
+		_index = _nextIndex;
+	}
+}   
+int16_t  OSCMessage::getAddressArg(int16_t _index , char *_rcvstr){
+    if ( _index > _addrArgsNum ) return -1;
+
+    strcpy( _rcvstr , _addrArgs[_index] );
+    
+    return 1;
+}
+int16_t  OSCMessage::getAddressArgSize(int16_t _index){
+    if ( _index > _addrArgsNum ) return -1;
+    
+    return strlen(_addrArgs[_index]);
+}
+
 int16_t OSCMessage::getArgsNum(void){
     return _argsNum; 
 }
@@ -145,11 +196,6 @@ void OSCMessage::swap(uint8_t *data1, uint8_t *data2){
     data1[3] = data2[0];
 }
 
-
-
-
-
-
 int16_t OSCMessage::beginMessage(const char *_address){
     flush();
     return setOSCAddress(_address);
@@ -169,9 +215,6 @@ int16_t OSCMessage::setArgData(char _type , void *_value , uint8_t _byte,bool _e
     
     return alignSize;
 }
-
-
-
 
 int16_t OSCMessage::addArgInt32(int32_t _value){
     

@@ -1,3 +1,25 @@
+#Multi-Toggle/Push Support Added
+Wildcard callbacks are now supported for use with multi-toggle/push controls. Insert a ^ at the end of a callback to enable a partial match callback. 
+
+```c   
+server.addCallback("/octobar/togglearray/^",&togglearray);
+```
+
+Here's an example using a multitoggle array from ToucHOSC:
+
+```c   
+void togglearray(OSCMessage *_mes) {
+  int colSize=_mes->getAddressArgSize(0);
+  char column[colSize+2]; // string memory allocation
+  _mes->getAddressArg(0,column);
+  
+  int rowSize=_mes->getAddressArgSize(1);
+  char row[rowSize+2];
+  _mes->getAddressArg(1,row);
+
+  float val=_mes->getArgFloat(0);
+}
+```
 
 # Important Note
 Arduino v1.0.1 (and maybe newer) have a malloc/free bug!

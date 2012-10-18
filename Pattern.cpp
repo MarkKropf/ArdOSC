@@ -12,6 +12,7 @@
  
  */
 
+#include <Arduino.h>
 #include <stdlib.h>
 #include <string.h>
 #include "OSCCommon/OSCServer.h"
@@ -21,12 +22,11 @@
 #include "OSCCommon/Pattern.h"
 
 
-
 Pattern::Pattern(){
     patternNum=0;
-
 }
-Pattern::~Pattern(){    
+
+Pattern::~Pattern(){
 }
 
 void Pattern::addOscAddress(char *_adr ,  AdrFunc _func){
@@ -40,9 +40,15 @@ void Pattern::execFunc(uint8_t _index,OSCMessage *_mes){
 }
 
 void Pattern::paternComp(OSCMessage *_mes){
-    
     for (uint8_t i=0 ; i<patternNum ; i++) {
-        if ( strcmp( addr[i] , _mes->_oscAddress ) == 0 ) execFunc( i , _mes );
-
-    }
+		String str_addr = String(addr[i]);
+		if(str_addr.endsWith("^")) {
+			String to_match = str_addr.substring(0, str_addr.length() - 1);
+			if(String(_mes->_oscAddress).startsWith(to_match)){
+				_mes->parseAddressArgs(addr[i]);					
+				execFunc(i, _mes);  
+			} 
+		}
+        else if ( strcmp( addr[i] , _mes->_oscAddress ) == 0 ) execFunc( i , _mes );
+	}
 }

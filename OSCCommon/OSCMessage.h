@@ -54,8 +54,10 @@ private:
     uint16_t	_argsAlignmentSize;
 	
 	uint16_t	_argsNum;
+	uint16_t	_addrArgsNum;
 
     OSCArg *    _args[kMaxArgument];
+	char *		_addrArgs[kMaxAddrArgument];
 
  
     uint16_t getMessageSize(void);
@@ -95,6 +97,11 @@ public:
 	int16_t addArgInt32(int32_t _value);
     int32_t getArgInt32(int16_t _index);
 
+	void 	 parseAddressArgs(char *_pattern); 
+	int16_t  getAddressArg(int16_t _index , char *_rcvstr);
+	int16_t  getAddressArgSize(int16_t _index);
+	int16_t  getAddressArgsNum(void);
+	
 #ifdef _USE_FLOAT_
     int16_t addArgFloat(float _value);
     float   getArgFloat(int16_t _index);
